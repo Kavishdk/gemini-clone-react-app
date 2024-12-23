@@ -4,8 +4,14 @@ import {
     HarmCategory,
     HarmBlockThreshold,
   } from "@google/generative-ai";
+import { config } from "dotenv";
+// config()
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
   
-  const apiKey = "AIzaSyCaaiiuam9h6v39R03AhSyUCnnqDS5nSx8";
+  if (!apiKey) {
+    alert("no api key")
+    throw new Error("GEMINI_API_KEY is not defined in the environment variables");
+  }
   const genAI = new GoogleGenerativeAI(apiKey);
   
   const model = genAI.getGenerativeModel({
